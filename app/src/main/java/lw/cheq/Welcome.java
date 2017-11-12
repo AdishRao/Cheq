@@ -47,7 +47,7 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener  
     public void onClick(View view) {
         if (view == login) {
             finish();
-            startActivity(new Intent(this,Capture.class));
+            startActivity(new Intent(this,Login.class));
         }
     }
     /**

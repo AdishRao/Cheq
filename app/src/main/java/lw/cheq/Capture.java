@@ -135,11 +135,10 @@ public class Capture extends AppCompatActivity implements CameraBridgeViewBase.C
         try {
         Imgproc.cvtColor(mRgba,imgGray,Imgproc.COLOR_BGR2GRAY);
         Imgproc.Canny(imgGray,imgCanny,30,200);
-        bmp = Bitmap.createBitmap(imgCanny.cols(), imgCanny.rows(), Bitmap.Config.ARGB_8888);
-            Utils.matToBitmap(imgCanny, bmp);
+        bmp = Bitmap.createBitmap(mRgba.cols(), mRgba.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(mRgba, bmp);
         }
         catch (CvException e){Log.d("Exception",e.getMessage());}
-        //Utils.matToBitmap(imgCanny,imgCannyb);
         return imgCanny;
     }
 }

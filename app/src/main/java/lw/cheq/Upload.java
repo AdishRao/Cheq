@@ -4,11 +4,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 
 import java.io.FileInputStream;
 
 public class Upload extends AppCompatActivity {
     Bitmap bmp = null;
+    ImageView cheque;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,5 +24,8 @@ public class Upload extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        cheque = findViewById(R.id.cheqimage);
+        cheque.setImageBitmap(bmp);
     }
 }
