@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import org.opencv.android.OpenCVLoader;
@@ -34,10 +36,17 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Remove title bar
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        //Remove notification bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        //set content view AFTER ABOVE sequence (to avoid crash)
         setContentView(R.layout.activity_welcome);
 
-
-        login = (Button) findViewById(R.id.button);
+        login = findViewById(R.id.button);
 
         login.setOnClickListener(this);
 
@@ -50,8 +59,4 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener  
             startActivity(new Intent(this,Login.class));
         }
     }
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
 }
