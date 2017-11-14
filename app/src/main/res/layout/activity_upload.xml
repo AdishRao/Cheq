@@ -20,12 +20,12 @@
 
         <ImageView
             android:id="@+id/cheqimage"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="LOGIN"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +33,7 @@
 
         <EditText
             android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
             android:ems="10"
@@ -44,7 +44,7 @@
 
         <EditText
             android:id="@+id/CHQ_NUM"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="CHQ_NUM"
@@ -54,7 +54,7 @@
 
         <EditText
             android:id="@+id/AMOUNT_WORDS"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="AMOUNT_WORDS"
@@ -64,7 +64,7 @@
 
         <EditText
             android:id="@+id/AMOUNT_DIGIT"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="AMOUNT_DIGIT"
@@ -74,7 +74,7 @@
 
         <EditText
             android:id="@+id/CHQ_DATE"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="CHQ_DATE"
@@ -84,7 +84,7 @@
 
         <EditText
             android:id="@+id/MICR_CODE"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="MICR_CODE"
@@ -94,7 +94,7 @@
 
         <EditText
             android:id="@+id/ACT_TYPE"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="ACT_TYPE"
@@ -104,7 +104,7 @@
 
         <EditText
             android:id="@+id/SAN_NO"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="SAN_NO"
@@ -114,7 +114,7 @@
 
         <EditText
             android:id="@+id/BEN_NAME"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="BEN_NAME"
@@ -125,7 +125,7 @@
 
         <EditText
             android:id="@+id/PAYEE_AC_NO"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="PAYEE_AC_NO"
@@ -135,7 +135,7 @@
 
         <EditText
             android:id="@+id/AMT_MATCH"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="AMT_MATCH"
@@ -145,7 +145,7 @@
 
         <EditText
             android:id="@+id/CHQ_STALE"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="CHQ_STALE"
