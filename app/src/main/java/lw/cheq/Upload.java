@@ -48,16 +48,16 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
 
         login.setOnClickListener(this);
 
-        fields.put("CHQ_NUM", (EditText) findViewById(R.id.CHQ_NUM));
-        fields.put("AMOUNT_WORDS", (EditText) findViewById(R.id.AMOUNT_WORDS));
-        fields.put("AMOUNT_DIGIT", (EditText) findViewById(R.id.AMOUNT_DIGIT));
-        fields.put("CHQ_DATE", (EditText) findViewById(R.id.CHQ_DATE));
-        fields.put("MICR_CODE", (EditText) findViewById(R.id.MICR_CODE));
-        fields.put("ACT_TYPE", (EditText) findViewById(R.id.ACT_TYPE));
-        fields.put("BEN_NAME", (EditText) findViewById(R.id.BEN_NAME));
-        fields.put("PAYEE_AC_NO", (EditText) findViewById(R.id.PAYEE_AC_NO));
-        fields.put("AMT_MATCH", (EditText) findViewById(R.id.AMT_MATCH));
-        fields.put("CHQ_STALE", (EditText) findViewById(R.id.CHQ_STALE));
+        fields.put("@string/chq_num", (EditText) findViewById(R.id.CHQ_NUM));
+        fields.put("@string/amount_words", (EditText) findViewById(R.id.AMOUNT_WORDS));
+        fields.put("@string/amount_digit", (EditText) findViewById(R.id.AMOUNT_DIGIT));
+        fields.put("@string/chq_date", (EditText) findViewById(R.id.CHQ_DATE));
+        fields.put("@string/micr_code", (EditText) findViewById(R.id.MICR_CODE));
+        fields.put("@string/act_type", (EditText) findViewById(R.id.ACT_TYPE));
+        fields.put("@string/ben_name", (EditText) findViewById(R.id.BEN_NAME));
+        fields.put("@string/payee_ac_no", (EditText) findViewById(R.id.PAYEE_AC_NO));
+        fields.put("@string/amt_match", (EditText) findViewById(R.id.AMT_MATCH));
+        fields.put("@string/chq_stale", (EditText) findViewById(R.id.CHQ_STALE));
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
     private void sendToAPI() {
         final String URL = "https://private-anon-f1ac857084-chequeinsertrecord.apiary-mock.com/InsertChqDetails/";
         // Post params to be sent to the server
-        HashMap<String, String> params = new HashMap<String, String>();
+        HashMap<String, String> params = new HashMap<>();
         params.put("token", "AbCdEfGh123456");
 
         JsonObjectRequest req = new JsonObjectRequest(URL, new JSONObject(params),

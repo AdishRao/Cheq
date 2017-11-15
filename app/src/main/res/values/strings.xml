@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Cheq</string>
+    <string name="permission_camera_rationale">Camera permission is needed to show the camera preview.</string>
+    <string name="ok">OK</string>
+    <string name="upload">UPLOAD</string>
+    <string name="chq_num">CHQ_NUM</string>
+    <string name="amount_words">AMOUNT_WORDS</string>
+    <string name="amount_digit">AMOUNT_DIGIT</string>
+    <string name="chq_date">CHQ_DATE</string>
+    <string name="micr_code">MICR_CODE</string>
+    <string name="act_type">ACT_TYPE</string>
+    <string name="san_no">SAN_NO</string>
+    <string name="ben_name">BEN_NAME</string>
+    <string name="payee_ac_no">PAYEE_AC_NO</string>
+    <string name="amt_match">AMT_MATCH</string>
+    <string name="chq_stale">CHQ_STALE</string>
+    <string name="check_image_preview">Check Image Preview</string>
 </resources>

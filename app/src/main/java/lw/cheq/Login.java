@@ -51,9 +51,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             }
         };
 
-        emailid= (EditText) findViewById(R.id.email);
-        passwordid =(EditText) findViewById(R.id.password);
-        login = (Button) findViewById(R.id.button);
+        emailid= findViewById(R.id.email);
+        passwordid = findViewById(R.id.password);
+        login = findViewById(R.id.button);
         progressDialog = new ProgressDialog(this);
 
         login.setOnClickListener(this);
@@ -108,6 +108,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         if(view == login)
         {
             userLogin();
+            finish();
         }
     }
 
