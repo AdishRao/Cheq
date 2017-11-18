@@ -71,16 +71,17 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
-        fields.put("@string/chq_num", (EditText) findViewById(R.id.CHQ_NUM));
-        fields.put("@string/amount_words", (EditText) findViewById(R.id.AMOUNT_WORDS));
-        fields.put("@string/amount_digit", (EditText) findViewById(R.id.AMOUNT_DIGIT));
-        fields.put("@string/chq_date", (EditText) findViewById(R.id.CHQ_DATE));
-        fields.put("@string/micr_code", (EditText) findViewById(R.id.MICR_CODE));
-        fields.put("@string/act_type", (EditText) findViewById(R.id.ACT_TYPE));
-        fields.put("@string/ben_name", (EditText) findViewById(R.id.BEN_NAME));
-        fields.put("@string/payee_ac_no", (EditText) findViewById(R.id.PAYEE_AC_NO));
-        fields.put("@string/amt_match", (EditText) findViewById(R.id.AMT_MATCH));
-        fields.put("@string/chq_stale", (EditText) findViewById(R.id.CHQ_STALE));
+        fields.put(getString(R.string.chq_num), (EditText) findViewById(R.id.CHQ_NUM));
+        fields.put(getString(R.string.amount_words), (EditText) findViewById(R.id.AMOUNT_WORDS));
+        fields.put(getString(R.string.amount_digit), (EditText) findViewById(R.id.AMOUNT_DIGIT));
+        fields.put(getString(R.string.chq_date), (EditText) findViewById(R.id.CHQ_DATE));
+        fields.put(getString(R.string.micr_code), (EditText) findViewById(R.id.MICR_CODE));
+        fields.put(getString(R.string.act_type), (EditText) findViewById(R.id.ACT_TYPE));
+        fields.put(getString(R.string.ben_name), (EditText) findViewById(R.id.BEN_NAME));
+        fields.put(getString(R.string.payee_ac_no), (EditText) findViewById(R.id.PAYEE_AC_NO));
+        fields.put(getString(R.string.amt_match), (EditText) findViewById(R.id.AMT_MATCH));
+        fields.put(getString(R.string.san_no), (EditText) findViewById(R.id.SAN_NO));
+        fields.put(getString(R.string.chq_stale), (EditText) findViewById(R.id.CHQ_STALE));
     }
 
     @Override
