@@ -1,8 +1,11 @@
 package lw.cheq;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
@@ -11,6 +14,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -30,6 +34,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +45,8 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
     CheckBox sbiapi;
     View view;
     ProgressDialog progressDialog;
+    EditText chqdate;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
     FirebaseStorage storage;
     // Create a storage reference from our app
     StorageReference storageRef;
@@ -60,6 +67,34 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
         }
 
         cheque = findViewById(R.id.cheqimage);
+        chqdate = findViewById(R.id.CHQ_DATE);
+
+        chqdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(Upload.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year,month,day);
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        dialog.show();
+
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                month++;
+                String date = dayOfMonth + "/" + month +"/" + year;
+                chqdate.setText(date);
+            }
+        };
         cheque.setImageBitmap(bmp);
 
         upload = findViewById(R.id.button);
@@ -88,6 +123,15 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         if (view == upload) {
             // TODO @Adish do form validation here, before calling these functions
+            String chq_num = fields.get("CHQ_NUM").getText().toString();
+             if(chq_num.length()>6)
+             {
+                 Toast.makeText(Upload.this, "String too long",
+                         Toast.LENGTH_SHORT).show();
+                 return;
+             }
+
+
 
             sendToFirebase();
             if (sbiapi.isChecked()) {
@@ -109,8 +153,12 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
             public void onFailure(@NonNull Exception e) {
                 // Convert bmp imag to byte array
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+               int k = bmp.getByteCount();
+                bmp.compress(Bitmap.CompressFormat.JPEG, 10, baos);
+                int j= bmp.getByteCount();
                 byte[] data = baos.toByteArray();
+               int i= baos.size();
+
 
                 // Upload
                 UploadTask uploadTask = chequeRef.putBytes(data);

@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/chq_num"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 tools:layout_editor_absoluteX="85dp"
                 tools:layout_editor_absoluteY="16dp" />
 
@@ -95,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/chq_date"
-                android:inputType="date"
+                android:inputType="textPersonName"
                 tools:layout_editor_absoluteX="85dp"
                 tools:layout_editor_absoluteY="16dp" />
 
