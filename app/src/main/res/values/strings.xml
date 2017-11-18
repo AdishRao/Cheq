@@ -15,4 +15,8 @@
     <string name="amt_match">AMT_MATCH</string>
     <string name="chq_stale">CHQ_STALE</string>
     <string name="check_image_preview">Check Image Preview</string>
+    <string name="firebase">Firebase</string>
+    <string name="sbi_api">Upload to SBI API</string>
+    <string name="api_key">9cf1034d-08c0-497e-b638-4fdb533f0a91</string>
+    <string name="team_id">8730826854</string>
 </resources>

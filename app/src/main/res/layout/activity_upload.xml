@@ -5,144 +5,171 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="lw.cheq.Upload">
+
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/sample_main_layout">
+        android:elevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-        <ImageView
-            android:id="@+id/cheqimage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/check_image_preview"/>
+        <LinearLayout
+            android:id="@+id/sample_main_layout"
+            android:layout_width="368dp"
+            android:layout_height="495dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/CHQ_NUM"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/chq_num"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="16dp" />
+            <ImageView
+                android:id="@+id/cheqimage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/check_image_preview" />
 
-        <EditText
-            android:id="@+id/AMOUNT_WORDS"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/amount_words"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="16dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/AMOUNT_DIGIT"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/amount_digit"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="16dp" />
+                <CheckBox
+                    android:id="@+id/SBIAPI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/sbi_api" />
 
-        <EditText
-            android:id="@+id/CHQ_DATE"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/chq_date"
-            android:inputType="date"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="16dp" />
+                <Button
+                    android:id="@+id/button"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/upload"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/MICR_CODE"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/micr_code"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="16dp" />
+            <EditText
+                android:id="@+id/CHQ_NUM"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/chq_num"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="16dp" />
 
-        <EditText
-            android:id="@+id/ACT_TYPE"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/act_type"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="16dp" />
+            <EditText
+                android:id="@+id/AMOUNT_WORDS"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/amount_words"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="16dp" />
 
-        <EditText
-            android:id="@+id/SAN_NO"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/san_no"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="16dp" />
+            <EditText
+                android:id="@+id/AMOUNT_DIGIT"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/amount_digit"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="16dp" />
 
-        <EditText
-            android:id="@+id/BEN_NAME"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/ben_name"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="16dp" />
+            <EditText
+                android:id="@+id/CHQ_DATE"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/chq_date"
+                android:inputType="date"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <EditText
+                android:id="@+id/MICR_CODE"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/micr_code"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <EditText
+                android:id="@+id/ACT_TYPE"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/act_type"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <EditText
+                android:id="@+id/SAN_NO"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/san_no"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <EditText
+                android:id="@+id/BEN_NAME"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/ben_name"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="16dp" />
 
 
-        <EditText
-            android:id="@+id/PAYEE_AC_NO"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/payee_ac_no"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="16dp" />
+            <EditText
+                android:id="@+id/PAYEE_AC_NO"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/payee_ac_no"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="16dp" />
 
-        <EditText
-            android:id="@+id/AMT_MATCH"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/amt_match"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="16dp" />
+            <EditText
+                android:id="@+id/AMT_MATCH"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/amt_match"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="16dp" />
 
-        <EditText
-            android:id="@+id/CHQ_STALE"
-            android:layout_width="400dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="@string/chq_stale"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="16dp" />
+            <EditText
+                android:id="@+id/CHQ_STALE"
+                android:layout_width="400dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/chq_stale"
+                android:inputType="textPersonName"
+                tools:layout_editor_absoluteX="85dp"
+                tools:layout_editor_absoluteY="16dp" />
 
-        <Button
-            android:id="@+id/button"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/upload"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>
