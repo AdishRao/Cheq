@@ -90,9 +90,23 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month++;
-                String date = dayOfMonth + "/" + month +"/" + year;
+                String[] months = {
+                        "Jan",
+                        "Feb",
+                        "Mar",
+                        "Apr",
+                        "May",
+                        "Jun",
+                        "Jul",
+                        "Aug",
+                        "Sept",
+                        "Oct",
+                        "Nov",
+                        "Dec"
+                };
+                String date = dayOfMonth + "-" + months[month] +"-" + year;
                 chqdate.setText(date);
+
             }
         };
         cheque.setImageBitmap(bmp);
@@ -154,7 +168,7 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
                 // Convert bmp imag to byte array
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                int k = bmp.getByteCount();
-                bmp.compress(Bitmap.CompressFormat.JPEG, 10, baos);
+                bmp.compress(Bitmap.CompressFormat.JPEG, 20, baos);
                 int j= bmp.getByteCount();
                 byte[] data = baos.toByteArray();
                int i= baos.size();
@@ -202,7 +216,7 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
 
         //converting image to base64 string
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        bmp.compress(Bitmap.CompressFormat.JPEG, 20, baos);
         byte[] imageBytes = baos.toByteArray();
         final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 

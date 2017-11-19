@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                     // User is signed in START ACTIVITY (Home Page)
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                     finish();
-                    startActivity(new Intent(getApplicationContext(), Capture.class));
+                    startActivity(new Intent(Login.this, Capture.class));
 
                 } else {
                     // User is signed out
@@ -85,7 +85,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                     Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                             finish();
-                           startActivity(new Intent(getApplicationContext(), Capture.class));
+                           startActivity(new Intent(Login.this, Capture.class));
 
 
                         } else {
