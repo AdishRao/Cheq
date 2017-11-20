@@ -46,10 +46,10 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
     View view;
     ProgressDialog progressDialog;
     EditText chqdate;
-    private DatePickerDialog.OnDateSetListener mDateSetListener;
     FirebaseStorage storage;
     // Create a storage reference from our app
     StorageReference storageRef;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
     private Button upload;
 
     @Override
@@ -217,7 +217,7 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
         //converting image to base64 string
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 20, baos);
-        byte[] imageBytes = baos.toByteArray();
+        final byte[] imageBytes = baos.toByteArray();
         final String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
         //sending image to server
@@ -239,12 +239,16 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
         }) {
             //adding parameters to send
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            public byte[] getBody() throws com.android.volley.AuthFailureError {
+                return imageBytes;
+            }
+
+            /*protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> parameters = new HashMap<>();
                 parameters.put("image", imageString);
                 return parameters;
             }
-
+            */
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
 
@@ -256,7 +260,7 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
                 headers.put("api-key", getString(R.string.api_key));
                 headers.put("TEAM_ID", getString(R.string.team_id));
                 headers.put("MIME_TYPE", "image/jpeg");
-                headers.put("ENCODING", "Base64");
+                headers.put("ENCODING", "None");
                 // TODO Find out a way to calculate image size and put it over here
                 //headers.put("IMG_SIZE", )
                 return headers;

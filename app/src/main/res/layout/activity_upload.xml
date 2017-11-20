@@ -71,11 +71,13 @@
 
             <EditText
                 android:id="@+id/AMOUNT_WORDS"
+                style="@style/Widget.AppCompat.EditText"
                 android:layout_width="400dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/amount_words"
                 android:inputType="textPersonName"
+                android:selectAllOnFocus="true"
                 tools:layout_editor_absoluteX="85dp"
                 tools:layout_editor_absoluteY="16dp" />
 
