@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/amount_digit"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 tools:layout_editor_absoluteX="85dp"
                 tools:layout_editor_absoluteY="16dp" />
 
@@ -107,7 +107,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/micr_code"
-                android:inputType="textPersonName"
+                android:inputType="number"
+                android:maxLength="9"
                 tools:layout_editor_absoluteX="85dp"
                 tools:layout_editor_absoluteY="16dp" />
 
@@ -127,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/san_no"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 tools:layout_editor_absoluteX="85dp"
                 tools:layout_editor_absoluteY="16dp" />
 
@@ -148,29 +149,30 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/payee_ac_no"
-                android:inputType="textPersonName"
+                android:inputType="number"
+                android:maxLength="11"
                 tools:layout_editor_absoluteX="85dp"
                 tools:layout_editor_absoluteY="16dp" />
 
-            <EditText
-                android:id="@+id/AMT_MATCH"
-                android:layout_width="400dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/amt_match"
-                android:inputType="textPersonName"
-                tools:layout_editor_absoluteX="85dp"
-                tools:layout_editor_absoluteY="16dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/CHQ_STALE"
-                android:layout_width="400dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/chq_stale"
-                android:inputType="textPersonName"
-                tools:layout_editor_absoluteX="85dp"
-                tools:layout_editor_absoluteY="16dp" />
+                <CheckBox
+                    android:id="@+id/CHQ_STALE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/chq_stale" />
+
+                <CheckBox
+                    android:id="@+id/AMT_MATCH"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/amt_match" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

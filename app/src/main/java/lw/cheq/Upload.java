@@ -8,9 +8,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -20,8 +20,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -34,15 +36,17 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Upload extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "Volley";
     Bitmap bmp = null;
     ImageView cheque;
     HashMap<String, EditText> fields = new HashMap<>();
-    CheckBox sbiapi;
+    CheckBox amt_match, chq_stale, sbiapi;
     View view;
     ProgressDialog progressDialog;
     EditText chqdate;
@@ -120,6 +124,9 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
 
+        amt_match = findViewById(R.id.AMT_MATCH);
+        chq_stale = findViewById(R.id.CHQ_STALE);
+
         fields.put(getString(R.string.chq_num), (EditText) findViewById(R.id.CHQ_NUM));
         fields.put(getString(R.string.amount_words), (EditText) findViewById(R.id.AMOUNT_WORDS));
         fields.put(getString(R.string.amount_digit), (EditText) findViewById(R.id.AMOUNT_DIGIT));
@@ -128,9 +135,7 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
         fields.put(getString(R.string.act_type), (EditText) findViewById(R.id.ACT_TYPE));
         fields.put(getString(R.string.ben_name), (EditText) findViewById(R.id.BEN_NAME));
         fields.put(getString(R.string.payee_ac_no), (EditText) findViewById(R.id.PAYEE_AC_NO));
-        fields.put(getString(R.string.amt_match), (EditText) findViewById(R.id.AMT_MATCH));
         fields.put(getString(R.string.san_no), (EditText) findViewById(R.id.SAN_NO));
-        fields.put(getString(R.string.chq_stale), (EditText) findViewById(R.id.CHQ_STALE));
     }
 
     @Override
@@ -138,14 +143,12 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
         if (view == upload) {
             // TODO @Adish do form validation here, before calling these functions
             String chq_num = fields.get("CHQ_NUM").getText().toString();
-             if(chq_num.length()>6)
-             {
-                 Toast.makeText(Upload.this, "String too long",
-                         Toast.LENGTH_SHORT).show();
-                 return;
-             }
 
-
+            if (chq_num.length() > 6) {
+                Toast.makeText(Upload.this, "Cheque Number too long",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             sendToFirebase();
             if (sbiapi.isChecked()) {
@@ -180,19 +183,19 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
                 uploadTask.addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                        Snackbar snackbar = Snackbar
+                        /*Snackbar snackbar = Snackbar
                                 .make(view, "Error Uploading to Firebase : " + exception.getMessage(), Snackbar.LENGTH_LONG);
 
-                        snackbar.show();
+                        snackbar.show();*/
                     }
                 }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                        Snackbar snackbar = Snackbar
+                        /*Snackbar snackbar = Snackbar
                                 .make(view, "Pushed Successfully!", Snackbar.LENGTH_LONG);
 
-                        snackbar.show();
+                        snackbar.show();*/
                     }
                 });
                 StorageMetadata metadata = new StorageMetadata.Builder()
@@ -205,7 +208,7 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void sendToAPI() {
-        final String URL = "https://private-anon-f1ac857084-chequeinsertrecord.apiary-mock.com/InsertChqDetails/";
+        final String URL = "http://apiplatformcloudse-gseapicssbisecond-uqlpluu8.srv.ravcloud.com:8001/InsertChqDetails";
 
         // Post params to be sent to the server
         HashMap<String, String> params = new HashMap<>();
@@ -225,7 +228,7 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
             @Override
             public void onResponse(String s) {
                 progressDialog.dismiss();
-                if (s.equals("true")) {
+                if (s.equals("NOT A JSON or XML:")) {
                     Toast.makeText(Upload.this, "Uploaded Successful", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(Upload.this, "Some error occurred!", Toast.LENGTH_LONG).show();
@@ -237,18 +240,11 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
                 Toast.makeText(Upload.this, "Some error occurred -> " + volleyError, Toast.LENGTH_LONG).show();
             }
         }) {
-            //adding parameters to send
             @Override
             public byte[] getBody() throws com.android.volley.AuthFailureError {
                 return imageBytes;
             }
 
-            /*protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parameters = new HashMap<>();
-                parameters.put("image", imageString);
-                return parameters;
-            }
-            */
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
 
@@ -261,11 +257,25 @@ public class Upload extends AppCompatActivity implements View.OnClickListener {
                 headers.put("TEAM_ID", getString(R.string.team_id));
                 headers.put("MIME_TYPE", "image/jpeg");
                 headers.put("ENCODING", "None");
+                headers.put("AMT_MATCH", (amt_match.isChecked() ? "1" : "0"));
+                headers.put("CHQ_STALE", (chq_stale.isChecked() ? "1" : "0"));
+
                 // TODO Find out a way to calculate image size and put it over here
                 //headers.put("IMG_SIZE", )
                 return headers;
             }
 
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String body;
+                try {
+                    body = new String(response.data, "UTF-8");
+                    Log.d(TAG, body);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                return super.parseNetworkResponse(response);
+            }
         };
 
         RequestQueue rQueue = Volley.newRequestQueue(Upload.this);
